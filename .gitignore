@@ -1,1 +1,3 @@
-# write files name you dont nwant to share
+node_modules
+.env
+public/uploads
