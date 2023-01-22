@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
 
 //request parser
 //req ashle parse korte hoy like from data.json data
-app.use(express.json);
+app.use(express.json());
                          //  html from handling - urlencoded and extended 
                        //  true means queryparameter accept korar jonno.
 app.use(express.urlencoded({ extended: true }));

@@ -7,15 +7,6 @@ function notFoundHandler(req, res, next) {
 
 //default error handler (bcz its default error handler thats why it will have err first)
 function errorHandler(err, req, res, next) {
-  //view folder>error file below error is the file name error.ejs
-  // res.render("error", {
-  //   title: "Error Page",
-  // });
-  // res.locals.tittle = "Error page";
-  // res.render("error");
-  // res.render('index',{layout:false});
-  //   if we want to send tittle as local variables
-  //   thn write (res.locals.tittle = "Error page";)
   res.locals.error =
     process.env.NODE_ENV === "development" ? err : { message: err.message };
 
@@ -40,3 +31,14 @@ module.exports = {
   errorHandler,
   //^shortcut way to write^
 };
+
+
+//view folder>error file below error is the file name error.ejs
+  // res.render("error", {
+  //   title: "Error Page",
+  // });
+  // res.locals.tittle = "Error page";
+  // res.render("error");
+  // res.render('index',{layout:false});
+  //   if we want to send tittle as local variables
+  //   thn write (res.locals.tittle = "Error page";)
