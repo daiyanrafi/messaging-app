@@ -12,6 +12,7 @@ function errorHandler(err, req, res, next) {
 
   res.status(err.status || 500);
 
+  
   if (res.locals.html) {
     // html response
     res.render("error", {

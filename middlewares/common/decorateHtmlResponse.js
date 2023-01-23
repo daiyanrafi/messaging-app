@@ -6,4 +6,5 @@ function decorateHtmlResponse(page_title) {
   };
 }
 
+
 module.exports = decorateHtmlResponse;
