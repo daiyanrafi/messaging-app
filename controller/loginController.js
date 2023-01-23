@@ -1,5 +1,6 @@
 //external imports
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 //internal imports
 const User = require("../models/People");
 
@@ -36,7 +37,12 @@ async function login(req, res, next) {
         };
 
         //generate token 
-        const token = jwt.sign(userObject, )
+        const token = jwt.sign(userObject, process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRY,
+        });
+
+        //set cookie
+        res.cookie(process.env.COOKIE_NAME);
       } else {
       }
     } else {
