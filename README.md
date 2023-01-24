@@ -12,10 +12,13 @@ Here my main 'Entry' file is "app.js"
 Install my-project with npm
 
 ```bash
-  npm i express dotenv ejs mongoose multer cookie-parser 
-  express-validator jsonwebtoken bcrypt http-errors
+  npm i express dotenv ejs mongoose multer cookie-parser express-validator jsonwebtoken bcrypt http-errors
 ```
-    
+Later Install 
+```bash
+  npm i moment
+  npm i socket.io
+```
 ## Run the project
 
 To run the project type
