@@ -2,12 +2,15 @@
 const express = require("express");
 
 // internal imports
-const { getLogin, login } = require("../controller/loginController");
+const { getLogin, login, logout } = require("../controller/loginController");
 const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
 const {
   doLoginValidators,
   doLoginValidationHandler,
 } = require("../middlewares/login/loginValidators");
+
+const { redirectLoggedIn } = require("../middlewares/common/checkLogin");
+
 
 const router = express.Router();
 
@@ -15,7 +18,7 @@ const router = express.Router();
 const page_title = "Login";
 
 // login page
-router.get("/", decorateHtmlResponse("page_title"), getLogin);
+router.get("/", decorateHtmlResponse("page_title"), redirectLoggedIn, getLogin);
 
 //process login
 router.post(
@@ -25,5 +28,8 @@ router.post(
   doLoginValidationHandler,
   login
 );
+
+//logout
+router.delete("/", logout);
 
 module.exports = router;
