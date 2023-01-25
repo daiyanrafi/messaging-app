@@ -3,6 +3,8 @@
 
 here you can create account, log in and chat with your friends.
 
+GOTO: https://messaging-app-coral.vercel.app/
+
 
 ## About Project
 
