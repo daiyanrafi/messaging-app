@@ -9,7 +9,6 @@
   "repository": {
     "type": "git"
   },
-  "author": "Sumit Saha <sumit.analyzen@gmail.com>",
   "license": "UNLICENSED",
   
   "dependencies": {
