@@ -18,17 +18,22 @@ const router = express.Router();
 // inbox page
 router.get("/", decorateHtmlResponse("Inbox"), checkLogin, getInbox);
 
-// search user for conversation
+
+// search conversation
 router.post("/search", checkLogin, searchUser);
+
 
 // add conversation
 router.post("/conversation", checkLogin, addConversation);
 
-// get messages of a conversation
+
+// get messages conversation
 router.get("/messages/:conversation_id", checkLogin, getMessages);
+
 
 // send message
 router.post("/message", checkLogin, attachmentUpload, sendMessage);
+
 
 module.exports = router;
 

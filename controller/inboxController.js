@@ -22,6 +22,7 @@ async function getInbox(req, res, next) {
   }
 }
 
+
 // search user
 async function searchUser(req, res, next) {
   const user = req.body.user;
@@ -158,6 +159,7 @@ async function sendMessage(req, res, next) {
       });
 
       const result = await newMessage.save();
+      
 
       // emit socket event
       global.io.emit("new_message", {

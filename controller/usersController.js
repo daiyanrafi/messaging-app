@@ -18,6 +18,7 @@ async function getUsers(req, res, next) {
   }
 }
 
+
 // add user
 async function addUser(req, res, next) {
   let newUser;
@@ -35,6 +36,7 @@ async function addUser(req, res, next) {
       password: hashedPassword,
     });
   }
+
 
   // save user or send error
   try {
@@ -60,7 +62,7 @@ async function removeUser(req, res, next) {
       _id: req.params.id,
     });
 
-    // remove user avatar if any
+    // remove user avatar if ti stays after failed logging
     if (user.avatar) {
       unlink(
         path.join(__dirname, `/../public/uploads/avatars/${user.avatar}`),

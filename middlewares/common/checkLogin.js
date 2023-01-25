@@ -1,15 +1,19 @@
 const jwt = require("jsonwebtoken");
+const createError = require("http-errors");
 
-// auth guard to protect routes that need authentication
+
+// auth guard protect route authentication
 const checkLogin = (req, res, next) => {
   let cookies =
     Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
+
 
   if (cookies) {
     try {
       token = cookies[process.env.COOKIE_NAME];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = decoded;
+
 
       // pass user info to response locals
       if (res.locals.html) {
@@ -40,7 +44,8 @@ const checkLogin = (req, res, next) => {
   }
 };
 
-// redirect already logged in user to inbox pabe
+
+// redirect already logged in user to inbox eh dekha jabe
 const redirectLoggedIn = function (req, res, next) {
   let cookies =
     Object.keys(req.signedCookies).length > 0 ? req.signedCookies : null;
@@ -52,9 +57,33 @@ const redirectLoggedIn = function (req, res, next) {
   }
 };
 
+
+//roll based authorization
+function requireRole(role) {
+  return function (req, res, next) {
+    if (req.user.role && role.includes(req.user.role)) {
+      next();
+    } else {
+      if (res.locals.html) {
+        next(createError(401, "not authorized"));
+      } else {
+        res.status(401).json({
+          errors: {
+            common: {
+              msg: "you are not authorized",
+            },
+          },
+        });
+      }
+    }
+  };
+}
+
+
 module.exports = {
   checkLogin,
   redirectLoggedIn,
+  requireRole,
 };
 
 ///////
